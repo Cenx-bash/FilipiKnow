@@ -1,689 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FilipiKnow Premium | Luxury Filipino Crafts & Knowledge</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles/auth.css" />
-    <link rel="stylesheet" href="styles/main.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-  </head>
-  <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="preloader-content">
+    <meta name="description" content="FilipiKnow Premium - Authentic Filipino Craftsmanship Marketplace">
+    <title>FilipiKnow</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+<!-- Preloader -->
+<div class="preloader">
+    <div class="preloader-content">
         <div class="logo-loader">
-          <i class="fas fa-crown"></i>
-          <span>FilipiKnow</span>
+            <span>FilipiKnow</span>
         </div>
         <div class="loading-bar">
-          <div class="loading-progress"></div>
+            <div class="loading-progress"></div>
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- Auth Modals -->
-    <div class="auth-modal" id="loginModal">
-      <div class="auth-content">
-        <button class="close-auth">&times;</button>
-        <div class="auth-header">
-          <h2>Welcome Back</h2>
-          <p>Sign in to your FilipiKnow account</p>
+<!-- Video Player Modal -->
+<div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+        <button class="close-video">&times;</button>
+        <div class="video-container">
+            <video id="storyVideo" controls>
+            </video>
         </div>
-        <form class="auth-form" id="loginForm">
-          <div class="form-group">
-            <label for="loginEmail">Email</label>
-            <input type="email" id="loginEmail" required />
-          </div>
-          <div class="form-group">
-            <label for="loginPassword">Password</label>
-            <input type="password" id="loginPassword" required />
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">
-            Sign In
-          </button>
-        </form>
-        <div class="auth-footer">
-          <p>
-            Don't have an account?
-            <a href="#" class="auth-switch" data-target="signup">Sign Up</a>
-          </p>
-        </div>
-      </div>
     </div>
+</div>
 
-    <div class="auth-modal" id="signupModal">
-      <div class="auth-content">
-        <button class="close-auth">&times;</button>
-        <div class="auth-header">
-          <h2>Join FilipiKnow</h2>
-          <p>Create your premium account</p>
-        </div>
-        <form class="auth-form" id="signupForm">
-          <div class="form-group">
-            <label for="signupName">Full Name</label>
-            <input type="text" id="signupName" required />
-          </div>
-          <div class="form-group">
-            <label for="signupEmail">Email</label>
-            <input type="email" id="signupEmail" required />
-          </div>
-          <div class="form-group">
-            <label for="signupPassword">Password</label>
-            <input type="password" id="signupPassword" required />
-          </div>
-          <div class="form-group">
-            <label for="signupConfirm">Confirm Password</label>
-            <input type="password" id="signupConfirm" required />
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">
-            Create Account
-          </button>
-        </form>
-        <div class="auth-footer">
-          <p>
-            Already have an account?
-            <a href="#" class="auth-switch" data-target="login">Sign In</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="nav-logo">
-          <i class="fas fa-crown"></i>
-          <span>FilipiKnow</span>
-        </div>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">
+            <span>FilipiKnow</span>
+        </a>
 
         <div class="nav-menu">
-          <a href="#" class="nav-link active">
-            <span>Discover</span>
-            <div class="nav-indicator"></div>
-          </a>
-          <a href="#" class="nav-link">
-            <span>Artisans</span>
-            <div class="nav-indicator"></div>
-          </a>
-          <a href="#" class="nav-link">
-            <span>Craft Stories</span>
-            <div class="nav-indicator"></div>
-          </a>
-          <a href="#" class="nav-link">
-            <span>Knowledge</span>
-            <div class="nav-indicator"></div>
-          </a>
+            <a href="#discover" class="nav-link active" data-section="discover">
+                <span>Discover</span>
+                <div class="nav-indicator"></div>
+            </a>
+            <a href="#artisans" class="nav-link" data-section="artisans">
+                <span>Artisans</span>
+                <div class="nav-indicator"></div>
+            </a>
+            <a href="#stories" class="nav-link" data-section="stories">
+                <span>Craft Stories</span>
+                <div class="nav-indicator"></div>
+            </a>
+            <a href="#knowledge" class="nav-link" data-section="knowledge">
+                <span>Knowledge</span>
+                <div class="nav-indicator"></div>
+            </a>
 
-          <div class="nav-actions">
-            <div class="search-container">
-              <button class="icon-btn search-toggle">
-                <i class="fas fa-search"></i>
-              </button>
-              <div class="search-box">
-                <input
-                  type="text"
-                  placeholder="Search artisans, crafts, stories..."
-                  class="search-input"
-                />
-                <button class="search-close">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-
-            <button class="icon-btn wishlist-btn">
-              <i class="fas fa-heart"></i>
-              <span class="badge">2</span>
-            </button>
-
-            <div class="cart-dropdown">
-              <button class="icon-btn cart-btn">
-                <i class="fas fa-shopping-bag"></i>
-                <span class="badge">1</span>
-              </button>
-              <div class="cart-preview">
-                <div class="cart-items">
-                  <div class="cart-item">
-                    <img
-                      src="https://images.unsplash.com/photo-1583244685026-d8513b661c1e?w=60&h=60&fit=crop"
-                      alt="Product"
-                    />
-                    <div class="cart-item-info">
-                      <h4>Inabel Textile</h4>
-                      <p>₱4,200</p>
+            <div class="nav-actions">
+                <div class="search-container">
+                    <button class="icon-btn search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search artisans, crafts, stories..." class="search-input" />
+                        <button class="search-close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="search-results"></div>
                     </div>
-                  </div>
                 </div>
-                <div class="cart-total">
-                  <span>Total: ₱4,200</span>
-                  <button class="btn btn-primary">View Cart</button>
+
+                <button class="icon-btn wishlist-btn" id="wishlistToggle">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="wishlistCount">0</span>
+                </button>
+
+                <div class="cart-dropdown">
+                    <button class="icon-btn cart-btn" id="cartToggle">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="badge" id="cartCount">0</span>
+                    </button>
+                    <div class="cart-preview">
+                        <div class="cart-items" id="cartItems">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                        <div class="cart-total">
+                            <span>Total: <span id="cartTotal">₱0</span></span>
+                            <button class="btn btn-primary" id="viewCartBtn">View Cart</button>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
 
-            <div class="auth-buttons">
-              <button class="btn btn-outline" id="loginBtn">Sign In</button>
-              <button class="btn btn-primary" id="signupBtn">Sign Up</button>
-            </div>
+                <div class="auth-buttons" id="authButtons">
+                    <button class="btn btn-outline" id="loginBtn">Sign In</button>
+                    <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+                </div>
 
-            <div class="user-dropdown" id="userDropdown" style="display: none">
-              <div class="user-avatar">
-                <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face"
-                  alt="User"
-                />
-              </div>
-              <div class="user-menu">
-                <a href="#" class="user-menu-item">
-                  <i class="fas fa-user"></i>
-                  <span>Profile</span>
-                </a>
-                <a href="#" class="user-menu-item">
-                  <i class="fas fa-shopping-bag"></i>
-                  <span>Orders</span>
-                </a>
-                <a href="#" class="user-menu-item">
-                  <i class="fas fa-heart"></i>
-                  <span>Wishlist</span>
-                </a>
-                <div class="user-menu-divider"></div>
-                <a href="#" class="user-menu-item" id="logoutBtn">
-                  <i class="fas fa-sign-out-alt"></i>
-                  <span>Sign Out</span>
-                </a>
-              </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face" alt="User" />
+                    </div>
+                    <div class="user-menu">
+                        <a href="#profile" class="user-menu-item">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="#orders" class="user-menu-item">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Orders</span>
+                        </a>
+                        <a href="#wishlist" class="user-menu-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Wishlist</span>
+                        </a>
+                        <div class="user-menu-divider"></div>
+                        <a href="#" class="user-menu-item" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sign Out</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
         <button class="mobile-menu-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
-      </div>
-    </nav>
+    </div>
+</nav>
 
+<!-- Main Content -->
+<main id="mainContent">
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-background">
-        <div class="hero-pattern"></div>
-      </div>
-
-      <div class="hero-container">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <i class="fas fa-gem"></i>
-            <span>Premium Authenticated</span>
-          </div>
-
-          <h1 class="hero-title">
-            <span class="title-line">Where Craft</span>
-            <span class="title-line">Meets Story</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            Discover authenticated Filipino craftsmanship with verified artisan
-            narratives. Each piece tells a story of heritage, skill, and
-            cultural preservation.
-          </p>
-
-          <div class="hero-stats">
-            <div class="stat">
-              <span class="stat-number">500+</span>
-              <span class="stat-label">Authenticated Artisans</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">2,000+</span>
-              <span class="stat-label">Craft Stories</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">98%</span>
-              <span class="stat-label">Satisfaction Rate</span>
-            </div>
-          </div>
-
-          <div class="hero-actions">
-            <button class="btn btn-primary btn-large">
-              <i class="fas fa-gem"></i>
-              Explore Collections
-            </button>
-            <button class="btn btn-outline btn-large">
-              <i class="fas fa-play-circle"></i>
-              Watch Stories
-            </button>
-          </div>
+    <section class="hero" id="discover">
+        <div class="hero-background">
+            <div class="hero-pattern"></div>
         </div>
 
-        <div class="hero-visual">
-          <div class="floating-cards">
-            <div class="craft-card card-1">
-              <div class="card-image">
-                <img
-                  src="https://images.unsplash.com/photo-1583244685026-d8513b661c1e?w=400&h=300&fit=crop"
-                  alt="Filipino Weaving"
-                />
-                <div class="card-overlay">
-                  <button class="btn btn-primary btn-small">View Story</button>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="card-header">
-                  <h3>Traditional Inabel Weaving</h3>
-                  <div class="card-badge">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
                     <i class="fas fa-certificate"></i>
-                  </div>
+                    <span>100% Authentic Heritage</span>
                 </div>
-                <p>Ilocos Norte, Philippines</p>
-                <div class="card-meta">
-                  <span class="meta-item">
-                    <i class="fas fa-clock"></i>
-                    3 weeks crafting
-                  </span>
-                  <span class="meta-item">
-                    <i class="fas fa-history"></i>
-                    5th generation
-                  </span>
+
+                <h1 class="hero-title">
+                    <span class="title-line">Where Craft</span>
+                    <span class="title-line">Meets Story</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Discover authenticated Filipino craftsmanship with verified artisan narratives. Each piece tells a story of heritage, skill, and cultural preservation.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Authenticated Artisans</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2,000+</span>
+                        <span class="stat-label">Craft Stories</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
                 </div>
-              </div>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large" id="exploreCollections">
+                        <i class="fas fa-gem"></i>
+                        Explore Collections
+                    </button>
+                    <button class="btn btn-outline btn-large" id="watchStories">
+                        <i class="fas fa-play-circle"></i>
+                        Watch Stories
+                    </button>
+                </div>
             </div>
 
-            <div class="craft-card card-2">
-              <div class="card-image">
-                <img
-                  src="https://images.unsplash.com/photo-1567767292271-875b8bcb5bb0?w=400&h=300&fit=crop"
-                  alt="Wood Carving"
-                />
-              </div>
-              <div class="card-content">
-                <h3>Narra Wood Carving</h3>
-                <p>Paete, Laguna</p>
-                <div class="craft-badge">
-                  <i class="fas fa-certificate"></i>
-                  <span>Heritage Certified</span>
+            <div class="hero-visual">
+                <div class="floating-cards">
+                    <!-- Cards will be dynamically loaded -->
                 </div>
-              </div>
             </div>
-
-            <div class="craft-card card-3">
-              <div class="card-image">
-                <img
-                  src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop"
-                  alt="Silver Filigree"
-                />
-              </div>
-              <div class="card-content">
-                <h3>Silver Filigree</h3>
-                <p>Cordillera Region</p>
-                <div class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <div class="hero-scroll-indicator">
-        <span>Scroll to Discover</span>
-        <div class="scroll-arrow">
-          <i class="fas fa-chevron-down"></i>
+        <div class="hero-scroll-indicator">
+            <span>Scroll to Discover</span>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Featured Collections -->
-    <section class="section">
-      <div class="section-header">
-        <div class="section-badge">
-          <i class="fas fa-crown"></i>
-          Curated Collections
+    <section class="section" id="collections">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="fas fa-crown"></i>
+                Curated Collections
+            </div>
+            <h2>Masterpiece Selections</h2>
+            <p>
+                Each piece undergoes our rigorous authentication process to ensure cultural integrity and craftsmanship excellence
+            </p>
         </div>
-        <h2>Masterpiece Selections</h2>
-        <p>
-          Each piece undergoes our rigorous authentication process to ensure
-          cultural integrity and craftsmanship excellence
-        </p>
-      </div>
 
-      <div class="collections-nav">
-        <button class="collection-nav-btn active">All</button>
-        <button class="collection-nav-btn">Weaving</button>
-        <button class="collection-nav-btn">Woodcraft</button>
-        <button class="collection-nav-btn">Pottery</button>
-        <button class="collection-nav-btn">Metalwork</button>
-        <button class="collection-nav-btn">Textiles</button>
-      </div>
+        <div class="collections-nav">
+            <button class="collection-nav-btn active" data-filter="all">All</button>
+            <button class="collection-nav-btn" data-filter="weaving">Weaving</button>
+            <button class="collection-nav-btn" data-filter="woodcraft">Woodcraft</button>
+            <button class="collection-nav-btn" data-filter="pottery">Pottery</button>
+            <button class="collection-nav-btn" data-filter="metalwork">Metalwork</button>
+            <button class="collection-nav-btn" data-filter="textiles">Textiles</button>
+        </div>
 
-      <div class="products-grid" id="productsGrid">
-        <!-- Products will be loaded by JavaScript -->
-      </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded by JavaScript -->
+        </div>
 
-      <div class="section-footer">
-        <button class="btn btn-outline">
-          <i class="fas fa-compass"></i>
-          Explore All Collections
-        </button>
-      </div>
+        <div class="section-footer">
+            <button class="btn btn-outline" id="viewAllCollections">
+                <i class="fas fa-compass"></i>
+                Explore All Collections
+            </button>
+        </div>
     </section>
 
     <!-- Artisan Stories Section -->
-    <section class="section bg-light">
-      <div class="section-header">
-        <div class="section-badge">
-          <i class="fas fa-book-open"></i>
-          Artisan Narratives
-        </div>
-        <h2>Stories Behind the Craft</h2>
-        <p>
-          Discover the rich histories, traditions, and personal journeys of our
-          master artisans
-        </p>
-      </div>
-
-      <div class="stories-showcase">
-        <div class="featured-story">
-          <div class="story-content">
-            <div class="story-badge">Featured Story</div>
-            <h3>The Last Piña Weavers of Aklan</h3>
-            <p class="story-excerpt">
-              In the quiet towns of Aklan, a handful of master weavers continue
-              the centuries-old tradition of piña cloth making. Using fibers
-              from pineapple leaves, they create some of the world's most
-              delicate and luxurious textiles...
+    <section class="section bg-light" id="stories">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="fas fa-book-open"></i>
+                Artisan Narratives
+            </div>
+            <h2>Stories Behind the Craft</h2>
+            <p>
+                Discover the rich histories, traditions, and personal journeys of our master artisans
             </p>
-            <div class="story-meta">
-              <div class="artisan-info">
-                <img
-                  src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=50&h=50&fit=crop&crop=face"
-                  alt="Artisan"
-                />
-                <div>
-                  <strong>Maria Santos</strong>
-                  <span>5th Generation Weaver</span>
-                </div>
-              </div>
-              <div class="story-stats">
-                <span><i class="fas fa-clock"></i> 15 min read</span>
-                <span><i class="fas fa-heart"></i> 234</span>
-              </div>
-            </div>
-            <button class="btn btn-primary">
-              <i class="fas fa-play-circle"></i>
-              Watch Documentary
-            </button>
-          </div>
-          <div class="story-visual">
-            <img
-              src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=600&h=400&fit=crop"
-              alt="Piña Weaving"
-            />
-            <div class="story-play-btn">
-              <i class="fas fa-play"></i>
-            </div>
-          </div>
         </div>
 
-        <div class="stories-grid" id="storiesGrid">
-          <!-- Stories will be loaded by JavaScript -->
+        <div class="stories-showcase">
+            <div class="featured-story">
+                <!-- Featured story will be loaded dynamically -->
+            </div>
+
+            <div class="stories-grid" id="storiesGrid">
+                <!-- Stories will be loaded by JavaScript -->
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Knowledge Marketplace -->
-    <section class="section">
-      <div class="section-header">
-        <div class="section-badge">
-          <i class="fas fa-graduation-cap"></i>
-          Master Classes
-        </div>
-        <h2>Learn from Masters</h2>
-        <p>
-          Immerse yourself in traditional Filipino crafts through our
-          authenticated masterclasses
-        </p>
-      </div>
-
-      <div class="knowledge-showcase">
-        <div class="knowledge-featured">
-          <div class="featured-class">
-            <div class="class-content">
-              <div class="class-badge">Most Popular</div>
-              <h3>Traditional Weaving Masterclass</h3>
-              <p class="class-description">
-                Learn the ancient art of Filipino weaving from master artisans
-                in Ilocos Norte. This comprehensive course covers everything
-                from thread preparation to complex patterns.
-              </p>
-              <div class="class-meta">
-                <div class="instructor">
-                  <img
-                    src="https://images.unsplash.com/photo-1583244685026-d8513b661c1e?w=50&h=50&fit=crop&crop=face"
-                    alt="Instructor"
-                  />
-                  <div>
-                    <strong>Master Weaver Elena</strong>
-                    <span>40 years experience</span>
-                  </div>
-                </div>
-                <div class="class-stats">
-                  <span><i class="fas fa-users"></i> 156 students</span>
-                  <span><i class="fas fa-star"></i> 4.9/5</span>
-                </div>
-              </div>
-              <div class="class-pricing">
-                <span class="price">₱2,500</span>
-                <span class="original-price">₱3,500</span>
-                <span class="discount">28% off</span>
-              </div>
-              <button class="btn btn-primary">
-                <i class="fas fa-shopping-cart"></i>
-                Enroll Now
-              </button>
+    <section class="section" id="knowledge">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="fas fa-graduation-cap"></i>
+                Master Classes
             </div>
-            <div class="class-preview">
-              <img
-                src="https://images.unsplash.com/photo-1583244685026-d8513b661c1e?w=500&h=350&fit=crop"
-                alt="Weaving Class"
-              />
-              <div class="preview-overlay">
-                <button class="btn btn-outline">
-                  <i class="fas fa-play"></i>
-                  Preview Class
-                </button>
-              </div>
-            </div>
-          </div>
+            <h2>Learn from Masters</h2>
+            <p>
+                Immerse yourself in traditional Filipino crafts through our authenticated masterclasses
+            </p>
         </div>
 
-        <div class="knowledge-grid" id="knowledgeGrid">
-          <!-- Knowledge items will be loaded by JavaScript -->
+        <div class="knowledge-showcase">
+            <div class="knowledge-featured">
+                <!-- Featured class will be loaded dynamically -->
+            </div>
+
+            <div class="knowledge-grid" id="knowledgeGrid">
+                <!-- Knowledge items will be loaded by JavaScript -->
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Authentication Process -->
-    <section class="section bg-dark">
-      <div class="section-header">
-        <div class="section-badge">
-          <i class="fas fa-shield-alt"></i>
-          Authentication
-        </div>
-        <h2>Our Verification Process</h2>
-        <p>
-          Every artisan and product undergoes rigorous authentication to ensure
-          cultural integrity
-        </p>
-      </div>
-
-      <div class="auth-process">
-        <div class="auth-step">
-          <div class="step-number">01</div>
-          <div class="step-icon">
-            <i class="fas fa-user-check"></i>
-          </div>
-          <h3>Artisan Verification</h3>
-          <p>Background check and skill assessment by cultural experts</p>
+    <section class="section bg-dark" id="authentication">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="fas fa-shield-alt"></i>
+                Authentication
+            </div>
+            <h2>Our Verification Process</h2>
+            <p>
+                Every artisan and product undergoes rigorous authentication to ensure cultural integrity
+            </p>
         </div>
 
-        <div class="auth-step">
-          <div class="step-number">02</div>
-          <div class="step-icon">
-            <i class="fas fa-microscope"></i>
-          </div>
-          <h3>Material Analysis</h3>
-          <p>Verification of traditional materials and techniques</p>
-        </div>
+        <div class="auth-process">
+            <div class="auth-step">
+                <div class="step-number">01</div>
+                <div class="step-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <h3>Artisan Verification</h3>
+                <p>Background check and skill assessment by cultural experts</p>
+            </div>
 
-        <div class="auth-step">
-          <div class="step-number">03</div>
-          <div class="step-icon">
-            <i class="fas fa-camera"></i>
-          </div>
-          <h3>Process Documentation</h3>
-          <p>Complete documentation of the crafting process</p>
-        </div>
+            <div class="auth-step">
+                <div class="step-number">02</div>
+                <div class="step-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h3>Material Analysis</h3>
+                <p>Verification of traditional materials and techniques</p>
+            </div>
 
-        <div class="auth-step">
-          <div class="step-number">04</div>
-          <div class="step-icon">
-            <i class="fas fa-certificate"></i>
-          </div>
-          <h3>Final Certification</h3>
-          <p>Issuance of digital certificate of authenticity</p>
+            <div class="auth-step">
+                <div class="step-number">03</div>
+                <div class="step-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Process Documentation</h3>
+                <p>Complete documentation of the crafting process</p>
+            </div>
+
+            <div class="auth-step">
+                <div class="step-number">04</div>
+                <div class="step-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>Final Certification</h3>
+                <p>Issuance of digital certificate of authenticity</p>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-main">
-          <div class="footer-brand">
-            <div class="nav-logo">
-              <i class="fas fa-crown"></i>
-              <span>FilipiKnow</span>
-              <sup>Premium</sup>
+    <!-- Artisans Showcase -->
+    <section class="section bg-light" id="artisans">
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="fas fa-hands-helping"></i>
+                Master Artisans
             </div>
+            <h2>Meet Our Artisans</h2>
             <p>
-              Preserving Filipino heritage through authenticated craftsmanship
-              and storytelling.
+                Celebrating the skilled hands and creative spirits preserving Filipino heritage
             </p>
-            <div class="social-links">
-              <a href="#" class="social-link"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="social-link"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-            </div>
-          </div>
+        </div>
 
-          <div class="footer-links">
-            <div class="footer-column">
-              <h4>Discover</h4>
-              <a href="#">Collections</a>
-              <a href="#">Artisans</a>
-              <a href="#">Stories</a>
-              <a href="#">New Arrivals</a>
+        <div class="artisans-grid" id="artisansGrid">
+            <!-- Artisans will be loaded dynamically -->
+        </div>
+    </section>
+</main>
+
+<!-- Auth Modals -->
+<div class="auth-modal" id="loginModal">
+    <div class="auth-content">
+        <button class="close-auth">&times;</button>
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your FilipiKnow account</p>
+        </div>
+        <form class="auth-form" id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" required />
+                <div class="error-message" id="loginEmailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required />
+                <div class="error-message" id="loginPasswordError"></div>
+            </div>
+            <div class="form-options">
+                <label class="checkbox">
+                    <input type="checkbox" id="rememberMe" />
+                    <span>Remember me</span>
+                </label>
+                <a href="#forgot-password" class="forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+                <span class="btn-text">Sign In</span>
+                <span class="btn-loader" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+            </button>
+        </form>
+        <div class="auth-divider">
+            <span>or continue with</span>
+        </div>
+        <div class="social-auth">
+            <button class="social-btn google-btn">
+                <i class="fab fa-google"></i>
+                <span>Google</span>
+            </button>
+            <button class="social-btn facebook-btn">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </button>
+        </div>
+        <div class="auth-footer">
+            <p>
+                Don't have an account?
+                <a href="#" class="auth-switch" data-target="signup">Sign Up</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="auth-modal" id="signupModal">
+    <div class="auth-content">
+        <button class="close-auth">&times;</button>
+        <div class="auth-header">
+            <h2>Join FilipiKnow</h2>
+            <p>Create your account</p>
+        </div>
+        <form class="auth-form" id="signupForm">
+            <div class="form-group">
+                <label for="signupName">Full Name</label>
+                <input type="text" id="signupName" required />
+                <div class="error-message" id="signupNameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" required />
+                <div class="error-message" id="signupEmailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" required />
+                <div class="error-message" id="signupPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <label for="signupConfirm">Confirm Password</label>
+                <input type="password" id="signupConfirm" required />
+                <div class="error-message" id="signupConfirmError"></div>
+            </div>
+            <div class="form-options">
+                <label class="checkbox">
+                    <input type="checkbox" id="termsAgreement" required />
+                    <span>I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a></span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+                <span class="btn-text">Create Account</span>
+                <span class="btn-loader" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+            </button>
+        </form>
+        <div class="auth-divider">
+            <span>or continue with</span>
+        </div>
+        <div class="social-auth">
+            <button class="social-btn google-btn">
+                <i class="fab fa-google"></i>
+                <span>Google</span>
+            </button>
+            <button class="social-btn facebook-btn">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </button>
+        </div>
+        <div class="auth-footer">
+            <p>
+                Already have an account?
+                <a href="#" class="auth-switch" data-target="login">Sign In</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Product Modal -->
+<div class="modal" id="productModal">
+    <div class="modal-content large-modal">
+        <button class="close-modal">&times;</button>
+        <div class="modal-body" id="modalBody">
+            <!-- Product details will be loaded here -->
+        </div>
+    </div>
+</div>
+
+<!-- Story Modal -->
+<div class="modal" id="storyModal">
+    <div class="modal-content large-modal">
+        <button class="close-modal">&times;</button>
+        <div class="modal-body" id="storyModalBody">
+            <!-- Story details will be loaded here -->
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <span>FilipiKnow</span>
+                </div>
+                <p>
+                    Preserving Filipino heritage through authenticated craftsmanship and storytelling.
+                </p>
+                <div class="social-links">
+                    <a href="https://instagram.com/filipiknow" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/filipiknow" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/filipiknow" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://tiktok.com/@filipiknow" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
             </div>
 
-            <div class="footer-column">
-              <h4>Learn</h4>
-              <a href="#">Masterclasses</a>
-              <a href="#">Workshops</a>
-              <a href="#">Documentaries</a>
-              <a href="#">Blog</a>
-            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Discover</h4>
+                    <a href="#collections">Collections</a>
+                    <a href="#artisans">Artisans</a>
+                    <a href="#stories">Stories</a>
+                    <a href="#new-arrivals">New Arrivals</a>
+                </div>
 
-            <div class="footer-column">
-              <h4>Support</h4>
-              <a href="#">Authentication</a>
-              <a href="#">Shipping</a>
-              <a href="#">Returns</a>
-              <a href="#">Contact</a>
-            </div>
+                <div class="footer-column">
+                    <h4>Learn</h4>
+                    <a href="#masterclasses">Masterclasses</a>
+                    <a href="#workshops">Workshops</a>
+                    <a href="#documentaries">Documentaries</a>
+                    <a href="#blog">Blog</a>
+                </div>
 
-            <div class="footer-column">
-              <h4>Company</h4>
-              <a href="#">About</a>
-              <a href="#">Heritage</a>
-              <a href="#">Careers</a>
-              <a href="#">Press</a>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#authentication">Authentication</a>
+                    <a href="#shipping">Shipping</a>
+                    <a href="#returns">Returns</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="#about">About</a>
+                    <a href="#heritage">Heritage</a>
+                    <a href="#careers">Careers</a>
+                    <a href="#press">Press</a>
+                </div>
             </div>
-          </div>
         </div>
 
         <div class="footer-bottom">
-          <div class="footer-legal">
-            <span>&copy; 2024 FilipiKnow Premium. All rights reserved.</span>
-            <div class="legal-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Cookie Policy</a>
+            <div class="footer-legal">
+                <span>&copy; 2025 FilipiKnow | Zen(Karl). All rights reserved.</span>
+                <div class="legal-links">
+                    <a href="#privacy-policy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#cookies">Cookie Policy</a>
+                </div>
             </div>
-          </div>
 
-          <div class="payment-methods">
-            <i class="fab fa-cc-visa"></i>
-            <i class="fab fa-cc-mastercard"></i>
-            <i class="fab fa-cc-paypal"></i>
-            <i class="fab fa-cc-amazon-pay"></i>
-          </div>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-cc-amazon-pay"></i>
+            </div>
         </div>
-      </div>
-    </footer>
-
-    <!-- Product Modal -->
-    <div class="modal" id="productModal">
-      <div class="modal-content large-modal">
-        <button class="close-modal">&times;</button>
-        <div class="modal-body" id="modalBody">
-          <!-- Product details will be loaded here -->
-        </div>
-      </div>
     </div>
+</footer>
 
-    <!-- Story Modal -->
-    <div class="modal" id="storyModal">
-      <div class="modal-content large-modal">
-        <button class="close-modal">&times;</button>
-        <div class="modal-body" id="storyModalBody">
-          <!-- Story details will be loaded here -->
-        </div>
-      </div>
+<!-- Toast Notifications -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+        <span>Loading...</span>
     </div>
+</div>
 
-    <!-- Authentication Badge -->
-    <div class="auth-badge">
-      <i class="fas fa-certificate"></i>
-      <span>FilipiKnow Authenticated</span>
-    </div>
-
-    <!-- Quick View Panel -->
-    <div class="quick-view-panel" id="quickViewPanel">
-      <div class="quick-view-content">
-        <!-- Quick view content will be loaded here -->
-      </div>
-    </div>
-
-    <script src="js/auth.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/app.js"></script>
-  </body>
+<!-- JavaScript Files -->
+<script src="js/database.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/video-player.js"></script>
+<script src="js/app.js"></script>
+</body>
 </html>

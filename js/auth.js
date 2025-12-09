@@ -1,259 +1,356 @@
-// Authentication System
+// Authentication System for FilipiKnow Premium
 class AuthSystem {
-  constructor() {
-    this.currentUser =
-      JSON.parse(localStorage.getItem("filipiknow_user")) || null;
-    this.init();
-  }
+    constructor() {
+        this.authModals = {
+            login: document.getElementById('loginModal'),
+            signup: document.getElementById('signupModal')
+        };
+        this.currentUser = db.getCurrentUser();
+        this.init();
+    }
 
-  init() {
-    this.setupEventListeners();
-    this.updateUI();
-  }
+    init() {
+        this.setupEventListeners();
+        this.updateUI();
+    }
 
-  setupEventListeners() {
-    // Auth buttons
-    document
-      .getElementById("loginBtn")
-      .addEventListener("click", () => this.showAuthModal("login"));
-    document
-      .getElementById("signupBtn")
-      .addEventListener("click", () => this.showAuthModal("signup"));
-    document.getElementById("logoutBtn").addEventListener("click", (e) => {
-      e.preventDefault();
-      this.logout();
-    });
+    setupEventListeners() {
+        // Auth buttons
+        document.getElementById('loginBtn')?.addEventListener('click', () => this.showAuthModal('login'));
+        document.getElementById('signupBtn')?.addEventListener('click', () => this.showAuthModal('signup'));
+        document.getElementById('logoutBtn')?.addEventListener('click', () => this.logout());
 
-    // Close modals
-    document.querySelectorAll(".close-auth").forEach((btn) => {
-      btn.addEventListener("click", () => this.closeAuthModals());
-    });
+        // Close auth modals
+        document.querySelectorAll('.close-auth').forEach(btn => {
+            btn.addEventListener('click', () => this.hideAuthModals());
+        });
 
-    // Auth switches
-    document.querySelectorAll(".auth-switch").forEach((link) => {
-      link.addEventListener("click", (e) => {
+        // Auth modal switches
+        document.querySelectorAll('.auth-switch').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.target.closest('.auth-switch').dataset.target;
+                this.showAuthModal(target);
+            });
+        });
+
+        // Form submissions
+        document.getElementById('loginForm')?.addEventListener('submit', (e) => this.handleLogin(e));
+        document.getElementById('signupForm')?.addEventListener('submit', (e) => this.handleSignup(e));
+
+        // Close modals on outside click
+        Object.values(this.authModals).forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.hideAuthModals();
+                }
+            });
+        });
+
+        // Escape key to close modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.hideAuthModals();
+            }
+        });
+    }
+
+    showAuthModal(type) {
+        this.hideAuthModals();
+
+        if (this.authModals[type]) {
+            this.authModals[type].classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Focus first input
+            const firstInput = this.authModals[type].querySelector('input');
+            if (firstInput) {
+                setTimeout(() => firstInput.focus(), 100);
+            }
+        }
+    }
+
+    hideAuthModals() {
+        Object.values(this.authModals).forEach(modal => {
+            modal.classList.remove('active');
+        });
+        document.body.style.overflow = 'auto';
+
+        // Reset forms
+        this.resetForms();
+    }
+
+    resetForms() {
+        document.querySelectorAll('.auth-form').forEach(form => {
+            form.reset();
+            form.querySelectorAll('.error-message').forEach(el => {
+                el.textContent = '';
+            });
+            form.querySelectorAll('input').forEach(input => {
+                input.classList.remove('error');
+            });
+            form.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('loading');
+            });
+        });
+    }
+
+    async handleLogin(e) {
         e.preventDefault();
-        const target = e.target.closest(".auth-switch").dataset.target;
-        this.showAuthModal(target);
-      });
-    });
 
-    // Form submissions
-    document
-      .getElementById("loginForm")
-      .addEventListener("submit", (e) => this.handleLogin(e));
-    document
-      .getElementById("signupForm")
-      .addEventListener("submit", (e) => this.handleSignup(e));
+        const form = e.target;
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const btn = form.querySelector('button[type="submit"]');
 
-    // Close modals on backdrop click
-    document.querySelectorAll(".auth-modal").forEach((modal) => {
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          this.closeAuthModals();
+        // Show loading state
+        btn.classList.add('loading');
+
+        // Simple validation
+        let isValid = true;
+
+        if (!this.validateEmail(email)) {
+            this.showError('loginEmailError', 'Please enter a valid email address');
+            document.getElementById('loginEmail').classList.add('error');
+            isValid = false;
         }
-      });
-    });
 
-    // Escape key to close modals
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        this.closeAuthModals();
-      }
-    });
-  }
+        if (password.length < 6) {
+            this.showError('loginPasswordError', 'Password must be at least 6 characters');
+            document.getElementById('loginPassword').classList.add('error');
+            isValid = false;
+        }
 
-  showAuthModal(type) {
-    this.closeAuthModals();
+        if (!isValid) {
+            btn.classList.remove('loading');
+            return;
+        }
 
-    if (type === "login") {
-      document.getElementById("loginModal").classList.add("active");
-    } else if (type === "signup") {
-      document.getElementById("signupModal").classList.add("active");
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Attempt login
+        const result = db.login(email, password);
+
+        if (result.success) {
+            this.currentUser = result.user;
+            this.updateUI();
+            this.hideAuthModals();
+            this.showNotification('Successfully logged in!', 'success');
+
+            // Update cart and wishlist counts
+            if (typeof cart !== 'undefined') {
+                cart.updateCartCount();
+            }
+            this.updateWishlistCount();
+        } else {
+            this.showError('loginPasswordError', result.message);
+            document.getElementById('loginPassword').classList.add('error');
+        }
+
+        btn.classList.remove('loading');
     }
 
-    document.body.style.overflow = "hidden";
-  }
+    async handleSignup(e) {
+        e.preventDefault();
 
-  closeAuthModals() {
-    document.querySelectorAll(".auth-modal").forEach((modal) => {
-      modal.classList.remove("active");
-    });
-    document.body.style.overflow = "auto";
-  }
+        const form = e.target;
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirm = document.getElementById('signupConfirm').value;
+        const terms = document.getElementById('termsAgreement').checked;
+        const btn = form.querySelector('button[type="submit"]');
 
-  handleLogin(e) {
-    e.preventDefault();
+        // Show loading state
+        btn.classList.add('loading');
 
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+        // Validation
+        let isValid = true;
 
-    // Simple validation
-    if (!email || !password) {
-      this.showNotification("Please fill in all fields", "error");
-      return;
+        if (name.trim().length < 2) {
+            this.showError('signupNameError', 'Name must be at least 2 characters');
+            document.getElementById('signupName').classList.add('error');
+            isValid = false;
+        }
+
+        if (!this.validateEmail(email)) {
+            this.showError('signupEmailError', 'Please enter a valid email address');
+            document.getElementById('signupEmail').classList.add('error');
+            isValid = false;
+        }
+
+        if (password.length < 6) {
+            this.showError('signupPasswordError', 'Password must be at least 6 characters');
+            document.getElementById('signupPassword').classList.add('error');
+            isValid = false;
+        }
+
+        if (password !== confirm) {
+            this.showError('signupConfirmError', 'Passwords do not match');
+            document.getElementById('signupConfirm').classList.add('error');
+            isValid = false;
+        }
+
+        if (!terms) {
+            this.showError('signupConfirmError', 'Please agree to the terms and conditions');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            btn.classList.remove('loading');
+            return;
+        }
+
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Attempt registration
+        const result = db.register(name, email, password);
+
+        if (result.success) {
+            this.currentUser = result.user;
+            this.updateUI();
+            this.hideAuthModals();
+            this.showNotification('Account created successfully!', 'success');
+
+            // Update cart and wishlist counts
+            if (typeof cart !== 'undefined') {
+                cart.updateCartCount();
+            }
+            this.updateWishlistCount();
+        } else {
+            this.showError('signupEmailError', result.message);
+            document.getElementById('signupEmail').classList.add('error');
+        }
+
+        btn.classList.remove('loading');
     }
 
-    // Simulate API call
-    this.showNotification("Signing in...", "info");
-
-    setTimeout(() => {
-      // For demo purposes, accept any credentials
-      const user = {
-        id: 1,
-        name: "Demo User",
-        email: email,
-        avatar:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face",
-      };
-
-      this.login(user);
-      this.showNotification("Welcome back!", "success");
-    }, 1000);
-  }
-
-  handleSignup(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("signupName").value;
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
-    const confirmPassword = document.getElementById("signupConfirm").value;
-
-    // Validation
-    if (!name || !email || !password || !confirmPassword) {
-      this.showNotification("Please fill in all fields", "error");
-      return;
+    validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 
-    if (password !== confirmPassword) {
-      this.showNotification("Passwords do not match", "error");
-      return;
+    showError(elementId, message) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = message;
+        }
     }
 
-    if (password.length < 6) {
-      this.showNotification("Password must be at least 6 characters", "error");
-      return;
+    clearErrors() {
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.textContent = '';
+        });
+        document.querySelectorAll('input.error').forEach(input => {
+            input.classList.remove('error');
+        });
     }
 
-    // Simulate API call
-    this.showNotification("Creating your account...", "info");
+    logout() {
+        db.logout();
+        this.currentUser = null;
+        this.updateUI();
+        this.showNotification('Logged out successfully', 'info');
 
-    setTimeout(() => {
-      const user = {
-        id: Date.now(),
-        name: name,
-        email: email,
-        avatar:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face",
-      };
-
-      this.login(user);
-      this.showNotification("Account created successfully!", "success");
-    }, 1500);
-  }
-
-  login(user) {
-    this.currentUser = user;
-    localStorage.setItem("filipiknow_user", JSON.stringify(user));
-    this.updateUI();
-    this.closeAuthModals();
-
-    // Clear forms
-    document.getElementById("loginForm").reset();
-    document.getElementById("signupForm").reset();
-  }
-
-  logout() {
-    this.currentUser = null;
-    localStorage.removeItem("filipiknow_user");
-    this.updateUI();
-    this.showNotification("Signed out successfully", "info");
-  }
-
-  updateUI() {
-    const authButtons = document.querySelector(".auth-buttons");
-    const userDropdown = document.getElementById("userDropdown");
-    const body = document.body;
-
-    if (this.currentUser) {
-      // User is logged in
-      authButtons.style.display = "none";
-      userDropdown.style.display = "block";
-      body.classList.add("user-logged-in");
-
-      // Update user avatar and name if needed
-      const avatar = userDropdown.querySelector(".user-avatar img");
-      if (avatar && this.currentUser.avatar) {
-        avatar.src = this.currentUser.avatar;
-      }
-    } else {
-      // User is logged out
-      authButtons.style.display = "flex";
-      userDropdown.style.display = "none";
-      body.classList.remove("user-logged-in");
+        // Update cart and wishlist counts
+        if (typeof cart !== 'undefined') {
+            cart.updateCartCount();
+        }
+        this.updateWishlistCount();
     }
-  }
 
-  showNotification(message, type = "info") {
-    // Create notification element
-    const notification = document.createElement("div");
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-            <div class="notification-content">
-                <i class="fas fa-${
-                  type === "success"
-                    ? "check"
-                    : type === "error"
-                    ? "exclamation"
-                    : "info"
-                }-circle"></i>
-                <span>${message}</span>
+    updateUI() {
+        const authButtons = document.getElementById('authButtons');
+        const userDropdown = document.getElementById('userDropdown');
+        const wishlistToggle = document.getElementById('wishlistToggle');
+
+        if (this.isAuthenticated()) {
+            // Show user dropdown, hide auth buttons
+            if (authButtons) authButtons.classList.add('active');
+            if (userDropdown) userDropdown.classList.add('active');
+            if (wishlistToggle) wishlistToggle.style.display = 'flex';
+
+            // Update user avatar if exists
+            const avatarImg = document.querySelector('.user-avatar img');
+            if (avatarImg && this.currentUser.avatar) {
+                avatarImg.src = this.currentUser.avatar;
+            }
+
+            // Update user name in dropdown if exists
+            const userName = document.querySelector('.user-menu-item:first-child span');
+            if (userName) {
+                userName.textContent = this.currentUser.name;
+            }
+        } else {
+            // Show auth buttons, hide user dropdown
+            if (authButtons) authButtons.classList.remove('active');
+            if (userDropdown) userDropdown.classList.remove('active');
+            if (wishlistToggle) wishlistToggle.style.display = 'none';
+        }
+    }
+
+    updateWishlistCount() {
+        const wishlistCount = document.getElementById('wishlistCount');
+        if (wishlistCount) {
+            const count = db.wishlist.length;
+            wishlistCount.textContent = count;
+            wishlistCount.style.display = count > 0 ? 'flex' : 'none';
+        }
+    }
+
+    isAuthenticated() {
+        return this.currentUser !== null;
+    }
+
+    showNotification(message, type = 'info') {
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+
+        // Icons for different types
+        const icons = {
+            success: 'fas fa-check-circle',
+            error: 'fas fa-exclamation-circle',
+            warning: 'fas fa-exclamation-triangle',
+            info: 'fas fa-info-circle'
+        };
+
+        toast.innerHTML = `
+            <div class="toast-icon">
+                <i class="${icons[type] || icons.info}"></i>
             </div>
+            <div class="toast-content">
+                <div class="toast-title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                <div class="toast-message">${message}</div>
+            </div>
+            <button class="close-toast">
+                <i class="fas fa-times"></i>
+            </button>
         `;
 
-    // Add styles
-    notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 2rem;
-            background: ${
-              type === "success"
-                ? "var(--success)"
-                : type === "error"
-                ? "var(--error)"
-                : "var(--accent)"
-            };
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            z-index: 1000;
-            animation: slideInRight 0.3s ease-out;
-            max-width: 300px;
-        `;
+        // Add to container
+        const container = document.getElementById('toastContainer');
+        if (container) {
+            container.appendChild(toast);
 
-    document.body.appendChild(notification);
+            // Add close event
+            const closeBtn = toast.querySelector('.close-toast');
+            closeBtn.addEventListener('click', () => {
+                toast.remove();
+            });
 
-    // Remove after 3 seconds
-    setTimeout(() => {
-      notification.style.animation = "slideOutRight 0.3s ease-in";
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 5000);
         }
-      }, 300);
-    }, 3000);
-  }
-
-  isAuthenticated() {
-    return this.currentUser !== null;
-  }
-
-  getUser() {
-    return this.currentUser;
-  }
+    }
 }
 
 // Initialize auth system
 const auth = new AuthSystem();
+window.auth = auth;
