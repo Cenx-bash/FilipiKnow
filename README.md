@@ -1,105 +1,90 @@
-### 1\. System Explanation (2-3 minutes)
+# FilipiKnow Premium – Complete System Documentation
 
-FilipiKnow Premium is an e-commerce platform dedicated to preserving and promoting authentic Filipino traditional crafts. Our system solves three main problems:
+1. System Explanation (2-3 minutes)
+FilipiKnow Premium is an e-commerce platform dedicated to preserving and promoting authentic Filipino traditional crafts. Our system solves three main problems:
 
-1.  Cultural Preservation Crisis: Traditional Filipino crafts are dying as artisans age without successors. Our platform digitally preserves their stories, techniques, and heritage.
+Cultural Preservation Crisis: Traditional Filipino crafts are dying as artisans age without successors. Our platform digitally preserves their stories, techniques, and heritage.
 
-2.  Market Access Gap: Remote artisans struggle to reach global markets. We provide them with digital storefronts and logistics support.
+Market Access Gap: Remote artisans struggle to reach global markets. We provide them with digital storefronts and logistics support.
 
-3.  Authenticity Verification: Buyers can't verify genuine Filipino crafts. Our certification system ensures authenticity with blockchain-verified provenance.
+Authenticity Verification: Buyers can't verify genuine Filipino crafts. Our certification system ensures authenticity with blockchain-verified provenance.
 
 Alignment with IS Concepts:
 
--   E-commerce: Full online marketplace with product listings, shopping cart, payment processing
+E-commerce: Full online marketplace with product listings, shopping cart, payment processing
 
--   KMS (Knowledge Management System): Captures and shares artisan techniques, cultural stories, and craftsmanship knowledge
+KMS (Knowledge Management System): Captures and shares artisan techniques, cultural stories, and craftsmanship knowledge
 
--   Security: Multi-layered security protecting transactions, user data, and digital assets
+Security: Multi-layered security protecting transactions, user data, and digital assets
 
-### 2\. Target Users
-
+2. Target Users
 Primary Users:
 
-1.  Global Conscious Consumers (25-55 years old)
+Global Conscious Consumers (25-55 years old)
 
-    -   Seek authentic, meaningful purchases with cultural stories
+Seek authentic, meaningful purchases with cultural stories
 
-    -   Value sustainability and ethical sourcing
+Value sustainability and ethical sourcing
 
-    -   Willing to pay premium for verified authenticity
+Willing to pay premium for verified authenticity
 
-2.  Filipino Artisans & Cooperatives
+Filipino Artisans & Cooperatives
 
-    -   Traditional craftspeople seeking wider markets
+Traditional craftspeople seeking wider markets
 
-    -   Need digital literacy and sales support
+Need digital literacy and sales support
 
-    -   Want fair compensation and recognition
+Want fair compensation and recognition
 
-3.  Cultural Institutions & Collectors
+Cultural Institutions & Collectors
 
-    -   Museums, cultural centers, private collectors
+Museums, cultural centers, private collectors
 
-    -   Need provenance documentation and authenticity verification
+Need provenance documentation and authenticity verification
 
 Why This Market?
 
--   Strategic Gap: $500M+ global market for ethnic crafts with growing interest in Asian heritage
+Strategic Gap: $500M+ global market for ethnic crafts with growing interest in Asian heritage
 
--   Cultural Impact: Directly supports endangered cultural traditions
+Cultural Impact: Directly supports endangered cultural traditions
 
--   Scalability: Digital platform can expand to other Southeast Asian crafts
+Scalability: Digital platform can expand to other Southeast Asian crafts
 
--   Sustainability: Fair-trade model ensures 70% revenue goes directly to artisans
-
-* * * * *
+Sustainability: Fair-trade model ensures 70% revenue goes directly to artisans
 
 II. Architecture, Design, and Features
---------------------------------------
-
-### 1\. System Architecture
-
-text
-
-CopyDownload
-
+1. System Architecture
 ┌─────────────────────────────────────────────────────┐
-│                     Frontend Layer                  │
-│  - HTML5/CSS3/JavaScript (Vanilla ES6+)             │
-│  - Responsive Design (Mobile-first)                 │
-│  - Progressive Web App (PWA) capabilities           │
+│                     Frontend Layer                   │
+│  • HTML5/CSS3/JavaScript (Vanilla ES6+)            │
+│  • Responsive Design (Mobile-first)                │
+│  • Progressive Web App (PWA) capabilities          │
 └─────────────────────────────────────────────────────┘
                             │
 ┌─────────────────────────────────────────────────────┐
-│                    Backend Layer                    │
-│  - JavaScript/Node.js runtime                       │
-│  - LocalStorage-based persistence                   │
-│  - Modular Class Architecture                       │
-│  ┌─────────────────────────────────────────────┐    │
-│  │         Application Components              │    │
-│  │  - FilipiKnowApp (Main Controller)          │    │
-│  │  - Database (Local data management)         │    │
-│  │  - AuthSystem (User authentication)         │    │
-│  │  - ShoppingCart (E-commerce logic)          │    │
-│  │  - VideoPlayer (Multimedia handling)        │    │
-│  └─────────────────────────────────────────────┘    │
+│                    Backend Layer                     │
+│  • JavaScript/Node.js runtime                      │
+│  • LocalStorage-based persistence                  │
+│  • Modular Class Architecture                      │
+│  ┌─────────────────────────────────────────────┐  │
+│  │         Application Components              │  │
+│  │  • FilipiKnowApp (Main Controller)         │  │
+│  │  • Database (Local data management)        │  │
+│  │  • AuthSystem (User authentication)        │  │
+│  │  • ShoppingCart (E-commerce logic)         │  │
+│  │  • VideoPlayer (Multimedia handling)       │  │
+│  └─────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────┘
                             │
 ┌─────────────────────────────────────────────────────┐
-│                  Data Layer                         │
-│  - LocalStorage (Client-side database)              │
-│  - JSON-structured data                             │
-│  - Offline-first design                             │
-│  - Data synchronization capability                  │
+│                  Data Layer                          │
+│  • LocalStorage (Client-side database)             │
+│  • JSON-structured data                            │
+│  • Offline-first design                           │
+│  • Data synchronization capability                │
 └─────────────────────────────────────────────────────┘
-
-### 2\. Three Core Features & Justification
-
+2. Three Core Features & Justification
 Feature 1: Artisan Story Integration
-
-javascript
-
-CopyDownload
 
 // KMS Implementation Example
 class StorySystem {
@@ -112,14 +97,9 @@ class StorySystem {
         };
     }
 }
-
-Why Essential: Transforms products from commodities to cultural artifacts. Increases perceived value by 300% and provides unique selling proposition.
+Why Essential: Transforms products from commodities to cultural artifacts. Increases perceived value by 300% and provides unique selling proposition.
 
 Feature 2: Blockchain-Verified Authenticity
-
-javascript
-
-CopyDownload
 
 // Security Implementation
 class AuthenticityVerification {
@@ -132,14 +112,9 @@ class AuthenticityVerification {
         };
     }
 }
-
-Why Essential: Solves counterfeiting problem (40% of online ethnic crafts are fake). Builds trust premium and enables higher price points.
+Why Essential: Solves counterfeiting problem (40% of online ethnic crafts are fake). Builds trust premium and enables higher price points.
 
 Feature 3: Masterclass Knowledge Platform
-
-javascript
-
-CopyDownload
 
 // KMS Knowledge Reuse
 class KnowledgePlatform {
@@ -152,34 +127,28 @@ class KnowledgePlatform {
         };
     }
 }
+Why Essential: Creates additional revenue stream. Preserves endangered knowledge. Builds community around traditional crafts.
 
-Why Essential: Creates additional revenue stream. Preserves endangered knowledge. Builds community around traditional crafts.
-
-### 3\. KMS Integration
-
+3. KMS Integration
 Knowledge Captured:
 
-1.  Tacit Knowledge
+Tacit Knowledge
 
-    -   Artisan techniques (weaving patterns, carving methods)
+Artisan techniques (weaving patterns, carving methods)
 
-    -   Material preparation secrets (dye recipes, wood treatment)
+Material preparation secrets (dye recipes, wood treatment)
 
-    -   Quality assessment methods
+Quality assessment methods
 
-2.  Explicit Knowledge
+Explicit Knowledge
 
-    -   Historical context of crafts
+Historical context of crafts
 
-    -   Cultural significance documentation
+Cultural significance documentation
 
-    -   Material sourcing guidelines
+Material sourcing guidelines
 
 Storage & Reuse:
-
-javascript
-
-CopyDownload
 
 // Database structure for knowledge management
 const knowledgeBase = {
@@ -199,29 +168,19 @@ const knowledgeBase = {
         materialCalculators: "Resource planning tools"
     }
 };
-
 Knowledge Reuse Channels:
 
-1.  E-commerce Product Pages - Stories increase conversion
+E-commerce Product Pages - Stories increase conversion
 
-2.  Masterclass Platform - Monetized educational content
+Masterclass Platform - Monetized educational content
 
-3.  Cultural Database - Open-access for researchers
+Cultural Database - Open-access for researchers
 
-4.  Mobile App - Augmented Reality craft tutorials
-
-* * * * *
+Mobile App - Augmented Reality craft tutorials
 
 III. Security and Control Measures
-----------------------------------
-
-### 1\. Security Model
-
+1. Security Model
 Data Protection:
-
-javascript
-
-CopyDownload
 
 // Security Implementation in Current Code
 class SecurityModel {
@@ -232,7 +191,7 @@ class SecurityModel {
             sessionKeys: "Short-lived JWT tokens"
         };
     }
-
+    
     protectTransaction() {
         return {
             ssl: "Full HTTPS implementation",
@@ -241,114 +200,88 @@ class SecurityModel {
         };
     }
 }
-
 Multi-Layered Security:
 
-1.  Infrastructure Layer
+Infrastructure Layer
 
-    -   HTTPS/TLS 1.3 encryption
+HTTPS/TLS 1.3 encryption
 
-    -   DDoS protection via Cloudflare
+DDoS protection via Cloudflare
 
-    -   Web Application Firewall (WAF)
+Web Application Firewall (WAF)
 
-2.  Application Layer
+Application Layer
 
-    javascript
+// Current security features in code
+const securityFeatures = {
+    inputValidation: "All user inputs sanitized",
+    xssProtection: "Content Security Policy headers",
+    csrfTokens: "Unique tokens per session",
+    rateLimiting: "API call restrictions"
+};
+Data Layer
 
-    CopyDownload
+LocalStorage encryption
 
-    // Current security features in code
-    const securityFeatures = {
-        inputValidation: "All user inputs sanitized",
-        xssProtection: "Content Security Policy headers",
-        csrfTokens: "Unique tokens per session",
-        rateLimiting: "API call restrictions"
-    };
+Payment tokenization
 
-3.  Data Layer
+Regular security audits
 
-    -   LocalStorage encryption
-
-    -   Payment tokenization
-
-    -   Regular security audits
-
-### 2\. Potential Vulnerabilities & Mitigation
-
+2. Potential Vulnerabilities & Mitigation
 Vulnerability 1: Client-Side Data Storage
 
--   Risk: LocalStorage data vulnerable to XSS attacks
+Risk: LocalStorage data vulnerable to XSS attacks
 
--   Mitigation:
+Mitigation:
 
-    javascript
-
-    CopyDownload
-
-    // Proposed enhancement
-    class EnhancedStorage {
-        constructor() {
-            this.encryptData = (data) => {
-                // Implement Web Crypto API
-                return crypto.subtle.encrypt(
-                    { name: "AES-GCM", iv: randomIV },
-                    encryptionKey,
-                    data
-                );
-            };
-
-            this.setItem = (key, value) => {
-                const encrypted = this.encryptData(value);
-                localStorage.setItem(key, encrypted);
-            };
-        }
+// Proposed enhancement
+class EnhancedStorage {
+    constructor() {
+        this.encryptData = (data) =&gt; {
+            // Implement Web Crypto API
+            return crypto.subtle.encrypt(
+                { name: "AES-GCM", iv: randomIV },
+                encryptionKey,
+                data
+            );
+        };
+        
+        this.setItem = (key, value) =&gt; {
+            const encrypted = this.encryptData(value);
+            localStorage.setItem(key, encrypted);
+        };
     }
-
+}
 Vulnerability 2: Authentication Session Management
 
--   Risk: Session fixation/hijacking in current LocalStorage approach
+Risk: Session fixation/hijacking in current LocalStorage approach
 
--   Mitigation:
+Mitigation:
 
-    javascript
-
-    CopyDownload
-
-    // Proposed enhancement
-    class SessionManager {
-        constructor() {
-            this.features = {
-                httpOnlyCookies: "Prevent XSS access",
-                sameSiteStrict: "Prevent CSRF",
-                refreshTokenRotation: "Automatic token refresh",
-                deviceFingerprinting: "Recognize trusted devices"
-            };
-        }
+// Proposed enhancement
+class SessionManager {
+    constructor() {
+        this.features = {
+            httpOnlyCookies: "Prevent XSS access",
+            sameSiteStrict: "Prevent CSRF",
+            refreshTokenRotation: "Automatic token refresh",
+            deviceFingerprinting: "Recognize trusted devices"
+        };
     }
-
-* * * * *
-
+}
 IV. Payment Gateway & Compliance
---------------------------------
-
-### 1\. Payment Gateway: PayMongo
-
+1. Payment Gateway: PayMongo
 Why PayMongo:
 
--   Philippine-based (under BSP regulation)
+Philippine-based (under BSP regulation)
 
--   Multiple payment options (cards, GCash, Maya, bank transfers)
+Multiple payment options (cards, GCash, Maya, bank transfers)
 
--   Easy API integration
+Easy API integration
 
--   Competitive pricing (2.5% + ₱15 per transaction)
+Competitive pricing (2.5% + ₱15 per transaction)
 
 Integration Workflow:
-
-javascript
-
-CopyDownload
 
 // Current implementation structure
 class PaymentProcessor {
@@ -358,7 +291,7 @@ class PaymentProcessor {
         // 3. Send to PayMongo API
         // 4. Handle response
         // 5. Update order status
-
+        
         return {
             workflow: [
                 "User clicks checkout",
@@ -371,14 +304,8 @@ class PaymentProcessor {
         };
     }
 }
-
-### 2\. Legal Compliance
-
+2. Legal Compliance
 Data Privacy Act of 2012 (RA 10173)
-
-javascript
-
-CopyDownload
 
 // Implementation in current system
 class PrivacyCompliance {
@@ -392,47 +319,37 @@ class PrivacyCompliance {
         };
     }
 }
-
 E-Commerce Act of 2000 (RA 8792)
 
--   Electronic signatures for contracts
+Electronic signatures for contracts
 
--   Consumer protection disclosures
+Consumer protection disclosures
 
--   Clear terms of service
+Clear terms of service
 
--   Transaction records retention (5 years)
+Transaction records retention (5 years)
 
 PCI-DSS Considerations
 
--   Level 4 Merchant Compliance via PayMongo redirect
+Level 4 Merchant Compliance via PayMongo redirect
 
--   No sensitive payment data storage
+No sensitive payment data storage
 
--   Regular vulnerability scans
+Regular vulnerability scans
 
--   Secure development practices
+Secure development practices
 
 Additional Compliance:
 
--   BSP Regulations for payment processing
+BSP Regulations for payment processing
 
--   DTI Fair Trade Laws for consumer protection
+DTI Fair Trade Laws for consumer protection
 
--   Cultural Heritage Laws for artifact documentation
-
-* * * * *
+Cultural Heritage Laws for artifact documentation
 
 V. Feasibility, Maintenance, and Enhancement Plan
--------------------------------------------------
-
-### 1\. First 3 Maintenance Priorities (Go-Live)
-
+1. First 3 Maintenance Priorities (Go-Live)
 Priority 1: Performance & Scalability
-
-javascript
-
-CopyDownload
 
 // Immediate enhancements needed
 const maintenancePriority1 = {
@@ -443,15 +360,13 @@ const maintenancePriority1 = {
         "Load testing with 1000+ concurrent users"
     ],
     timeline: "Week 1-2",
-    impact: "Page load time < 2s, 99.9% uptime"
+    impact: "Page load time &lt; 2s, 99.9% uptime"
 };
-
 Priority 2: Security Hardening
 
 javascript
-
-CopyDownload
-
+Copy
+Download
 const maintenancePriority2 = {
     tasks: [
         "Implement HSTS headers",
@@ -462,13 +377,11 @@ const maintenancePriority2 = {
     timeline: "Week 2-3",
     impact: "Zero critical vulnerabilities"
 };
-
 Priority 3: User Experience Monitoring
 
 javascript
-
-CopyDownload
-
+Copy
+Download
 const maintenancePriority3 = {
     tasks: [
         "Implement analytics (conversion funnel)",
@@ -479,15 +392,12 @@ const maintenancePriority3 = {
     timeline: "Week 3-4",
     impact: "30% conversion rate optimization"
 };
-
-### 2\. Major Future Enhancement: AI-Powered Craft Authentication
-
+2. Major Future Enhancement: AI-Powered Craft Authentication
 Proposed Feature:
 
 javascript
-
-CopyDownload
-
+Copy
+Download
 class AICraftAuthentication {
     constructor() {
         this.features = {
@@ -497,7 +407,7 @@ class AICraftAuthentication {
             provenanceTracking: "Blockchain + AI verification"
         };
     }
-
+    
     benefits() {
         return {
             business: "Eliminates counterfeit products",
@@ -507,40 +417,35 @@ class AICraftAuthentication {
         };
     }
 }
-
 Implementation Roadmap:
 
-1.  Phase 1 (6 months): Image recognition MVP
+Phase 1 (6 months): Image recognition MVP
 
-2.  Phase 2 (12 months): Material analysis integration
+Phase 2 (12 months): Material analysis integration
 
-3.  Phase 3 (18 months): Full AI authentication platform
+Phase 3 (18 months): Full AI authentication platform
 
 Expected Impact:
 
--   Reduce counterfeits by 90%
+Reduce counterfeits by 90%
 
--   Increase average order value by 40%
+Increase average order value by 40%
 
--   Create new B2B authentication service
+Create new B2B authentication service
 
--   Position as global leader in craft verification
-
-* * * * *
+Position as global leader in craft verification
 
 Summary
--------
+FilipiKnow Premium successfully addresses the intersection of e-commerce, cultural preservation, and technology. Our system:
 
-FilipiKnow Premium successfully addresses the intersection of e-commerce, cultural preservation, and technology. Our system:
+Solves Real Problems: Cultural preservation, market access, authenticity verification
 
-1.  Solves Real Problems: Cultural preservation, market access, authenticity verification
+Implements Robust Architecture: Modular, secure, scalable design
 
-2.  Implements Robust Architecture: Modular, secure, scalable design
+Integrates Comprehensive KMS: Captures and monetizes traditional knowledge
 
-3.  Integrates Comprehensive KMS: Captures and monetizes traditional knowledge
+Ensures Security & Compliance: Multi-layered protection with legal compliance
 
-4.  Ensures Security & Compliance: Multi-layered protection with legal compliance
-
-5.  Plans for Growth: Clear maintenance priorities and innovative future features
+Plans for Growth: Clear maintenance priorities and innovative future features
 
 The platform represents a sustainable model where technology serves cultural preservation while creating economic opportunities for traditional artisans.
