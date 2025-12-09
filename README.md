@@ -54,35 +54,12 @@ Sustainability: Fair-trade model ensures 70% revenue goes directly to artisans
 
 II. Architecture, Design, and Features
 1. System Architecture
-┌─────────────────────────────────────────────────────┐
-│                     Frontend Layer                   │
-│  • HTML5/CSS3/JavaScript (Vanilla ES6+)            │
-│  • Responsive Design (Mobile-first)                │
-│  • Progressive Web App (PWA) capabilities          │
-└─────────────────────────────────────────────────────┘
-                            │
-┌─────────────────────────────────────────────────────┐
-│                    Backend Layer                     │
-│  • JavaScript/Node.js runtime                      │
-│  • LocalStorage-based persistence                  │
-│  • Modular Class Architecture                      │
-│  ┌─────────────────────────────────────────────┐  │
-│  │         Application Components              │  │
-│  │  • FilipiKnowApp (Main Controller)         │  │
-│  │  • Database (Local data management)        │  │
-│  │  • AuthSystem (User authentication)        │  │
-│  │  • ShoppingCart (E-commerce logic)         │  │
-│  │  • VideoPlayer (Multimedia handling)       │  │
-│  └─────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────┘
-                            │
-┌─────────────────────────────────────────────────────┐
-│                  Data Layer                          │
-│  • LocalStorage (Client-side database)             │
-│  • JSON-structured data                            │
-│  • Offline-first design                           │
-│  • Data synchronization capability                │
-└─────────────────────────────────────────────────────┘
+| Layer              | Key Technologies / Components                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend Layer** | • HTML5 / CSS3 / JavaScript (Vanilla ES6+)  <br>• Responsive Design (Mobile-first)  <br>• Progressive Web App (PWA) capabilities                                                                                                                                                                                                                                                                  |
+| **Backend Layer**  | • JavaScript / Node.js runtime  <br>• LocalStorage-based persistence  <br>• Modular Class Architecture  <br> ┌─ Application Components ─┐  <br>│  • FilipiKnowApp (Main Controller)  <br>│  • Database (Local data management)  <br>│  • AuthSystem (User authentication)  <br>│  • ShoppingCart (E-commerce logic)  <br>│  • VideoPlayer (Multimedia handling)  <br>└──────────────────────────┘ |
+| **Data Layer**     | • LocalStorage (client-side database)  <br>• JSON-structured data  <br>• Offline-first design  <br>• Data-synchronization capability                                                                                                                                                                                                                                                              |
+
 
 3. Three Core Features & Justification
 Feature 1: Artisan Story Integration
